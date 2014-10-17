@@ -1,0 +1,8 @@
+description "Website created to benchmark Yesod"
+
+start on started mysql
+stop on stopped mysql
+respawn
+
+chdir %path_to_config_dir%
+exec %path_to_binary%
