@@ -1,0 +1,33 @@
+# NOTE: These settings can be overridden by environment variables as well, in
+# particular:
+#
+#    MYSQL_HOST
+#    MYSQL_PORT
+#    MYSQL_USER
+#    MYSQL_PASSWORD
+#    MYSQL_DATABASE
+
+Default: &defaults
+  user: yesod_benchmark
+  password: yesod_benchmark
+  host: localhost
+  port: 3306
+  database: yesod_benchmark
+  poolsize: 10
+
+Development:
+  <<: *defaults
+
+Testing:
+  database: yesod_benchmark_test
+  <<: *defaults
+
+Staging:
+  database: yesod_benchmark_staging
+  poolsize: 100
+  <<: *defaults
+
+Production:
+  database: yesod_benchmark
+  poolsize: 100
+  <<: *defaults

@@ -1,0 +1,20 @@
+User
+    ident Text
+    password Text Maybe
+    UniqueUser ident
+    deriving Typeable
+Email
+    email Text
+    user UserId Maybe
+    verkey Text Maybe
+    UniqueEmail email
+Employee
+    title Text
+    content Html
+    firstname Text
+    lastname Text
+Project
+    title Text
+    content Html
+    url Text
+    customer Text

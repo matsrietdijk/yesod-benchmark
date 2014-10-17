@@ -1,0 +1,18 @@
+<h1>_{MsgHello}
+<div .content>
+     $if null projects
+
+     $else
+        $forall Entity projectId project <- projects
+                <div .project>
+                     <h2 .title>#{projectTitle project}
+                     <a href=@{ProjectR projectId}>Meer lezen
+                     <a href=#{projectUrl project}>Project bezoeken
+                     <p .klant>#{projectCustomer project}
+     $if null employees
+
+     $else
+        $forall Entity employeeId employee <- employees
+                <div .medewerker>
+                     <h2>#{employeeFirstname employee} #{employeeLastname employee}
+                     <a href=@{EmployeeR employeeId}>Meer lezen
