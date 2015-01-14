@@ -15,14 +15,17 @@ stanzas:
     exec: ../dist/build/yesod-benchmark/yesod-benchmark
 
     # Command line options passed to your application.
-    args:
-      - production
+    args: []
 
     hosts:
       # You can specify one or more hostnames for your application to respond
       # to. The primary hostname will be used for generating your application
       # root.
       - www.yesod-benchmark.com
+
+    # Enable to force Keter to redirect to https
+    # Can be added to any stanza
+    requires-secure: false
 
   # Static files.
   - type: static-files

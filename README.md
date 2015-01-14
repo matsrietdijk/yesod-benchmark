@@ -2,10 +2,10 @@
 
 ```
 echo " \
-  create database yesod_benchmark; \
-  grant all privileges on yesod_benchmark.* to \
-  yesod_benchmark@localhost identified by 'yesod_benchmark'; " \
-|  mysql -u root -p
+  create database \"yesod-benchmark\"; \
+  create user \"yesod-benchmark\" with password 'yesod-benchmark'; \
+  grant all on database \"yesod-benchmark\" to \"yesod-benchmark\";" \
+  | psql
 ```
 
 ## Test data

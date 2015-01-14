@@ -9,12 +9,16 @@ Email
     verkey Text Maybe
     UniqueEmail email
 Employee
+    ident Text
     title Text
     content Html
     firstname Text
     lastname Text
+    lang Text
 Project
+    ident Text
     title Text
     content Html
     url Text
     customer Text
+    lang Text
