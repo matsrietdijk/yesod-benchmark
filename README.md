@@ -1,4 +1,6 @@
-# Database
+# Setup
+
+## Create db
 
 ```
 echo " \
@@ -8,20 +10,27 @@ echo " \
   | psql
 ```
 
-## Test data
+## Install yesod app
 
+run the following command:
+
+```fish
+cabal install -j --enable-tests --max-backjumps=-1 --reorder-goals; and yesod devel
 ```
-lorem=$(curl http://www.loripsum.net/api/4)
-for i in {1..20}; do \
-  echo "\
-    insert into yesod_benchmark.employee (title, content, firstname, lastname) \
-    values ('Employee $i', '$lorem', 'Voornaam', 'Achternaam');"
-  done | mysql -uyesod_benchmark -p
 
-lorem=$(curl http://www.loripsum.net/api/6)
-for i in {1..15}; do \
-  echo "\
-    insert into yesod_benchmark.project (title, content, url, customer) \
-    values ('Project $i', '$lorem', 'http://dummy.url', 'Klant');"
-  done | mysql -uyesod_benchmark -p
+## Generate dummy content
+
+```fish
+for l in 'en' 'nl'; \
+    set lorem (curl http://www.loripsum.net/api/4); \
+    for i in (seq 20); \
+        psql 'yesod-benchmark' -c "insert into employee (ident, title, content, firstname, lastname, lang) \
+        values ('$i', 'Employee $i', '$lorem', 'Voornaam', 'Achternaam', '$l');"; \
+    end; \
+    set lorem (curl http://www.loripsum.net/api/6); \
+    for i in (seq 15); \
+        psql 'yesod-benchmark' -c "insert into project (ident, title, content, url, customer, lang) \
+        values ('$i', 'Project $i', '$lorem', 'http://dummy.url', 'Klant', '$l');"; \
+    end; \
+end
 ```
