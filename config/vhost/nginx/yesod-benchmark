@@ -1,14 +1,13 @@
 server {
     listen 80;
-    
+
     server_name yesod.benchmark.local;
 
     location / {
         proxy_pass http://127.0.0.1:3000;
     }
-    
-    locaton /static {
-        root /var/www/wp_benchmark/static;
-        expire max;
+
+    location /static {
+        root /var/www/yesod/static;
     }
 }
